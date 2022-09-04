@@ -1,26 +1,33 @@
+import { ResultsStateType } from "../App";
 type ResultsPropsType = {
-    results:{
-        country: string;
-        cityName: string;
-        temperature: string;
-        conditionText:string;
-        icon:string;
-    }
+    results:ResultsStateType;
 }
 
+// type ResultsPropsType = {
+//     results:{
+//         country: string;
+//         cityName: string;
+//         temperature: string;
+//         conditionText:string;
+//         icon:string;
+//     }
+// }
 
-const Results = (props:ResultsPropsType) => {
+// const Results = ({results} :ResultsPropsType) => {  // props省略形
+    //const {cityName,country,temperature,conditionText,icon} = results;
+const Results = (props :ResultsPropsType) => {
+    const {cityName,country,temperature,conditionText,icon} = props.results;
     return (
-        <div>
-            {props.results.cityName && <div>{props.results.cityName}</div>}
-            {props.results.temperature && <div><span>{props.results.temperature}</span></div>}
-            {props.results.conditionText && 
-                <div>
-                    <img src={props.results.icon} alt="icon" />
-                    <span>{props.results.conditionText}</span>
+        <>
+            {cityName && <div>{cityName}</div>}
+            {temperature && <div><span>{temperature}</span></div>}
+            {conditionText && 
+                <div className="results-condition">
+                    <img src={icon} alt="icon" />
+                    <span>{conditionText}</span>
                 </div>
             }
-        </div>
+        </>
     );
 };
 
