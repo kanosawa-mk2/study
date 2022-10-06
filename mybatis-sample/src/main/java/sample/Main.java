@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import sample.dao.MUserMapper;
 import sample.dao.Tbl2Mapper;
 import sample.model.Tbl2;
 
@@ -33,6 +34,11 @@ public class Main {
 			System.out.println(mapper.updatePk(tbl));
 			
 			System.out.println(mapper.deletePk(99));
+			
+			MUserMapper usermapper = session.getMapper(MUserMapper.class);
+			
+			
+			System.out.println(usermapper.selectPk("001"));
 			
 			
 			session.commit();
