@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.dao.Tbl2Mapper">
+
+	<select id="selectPk" resultType="sample.model.Tbl2">
+		select * from Tbl2 where id = #{id}
+	</select>
+
+	<select id="selectPkCount" resultType="int">
+		select count(*) from Tbl2
+		where id = #{id}
+	</select>
+
+	<select id="selectPkByName" resultType="string">
+		select name from Tbl2
+		where id = #{id}
+	</select>
+
+	<select id="selectPkBigDecimal" resultType="sample.model.Tbl2_2">
+		select * from Tbl2
+		where id = #{id}
+	</select>
+
+	<insert id="insert">
+		insert into Tbl2 (id,name)
+		values (#{id},#{name})
+	</insert>
+
+	<update id="updatePk">
+		update Tbl2 set
+		name = #{name}
+		where id = #{id}
+	</update>
+
+	<delete id="deletePk">
+		delete from Tbl2 where id = #{id}
+	</delete>
+
+</mapper>
