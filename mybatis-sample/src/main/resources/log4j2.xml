@@ -12,14 +12,14 @@
 			<PatternLayout pattern="${ptn}" />
 		</Console>
 		<!-- ファイル出力 -->
-		<File name="file" fileName="log/${date:yyyyMMddHHmmss}.log">
-			<PatternLayout pattern="${ptn}" />
-		</File>
+<!-- 		<File name="file" fileName="log/${date:yyyyMMddHHmmss}.log"> -->
+<!-- 			<PatternLayout pattern="${ptn}" /> -->
+<!-- 		</File> -->
 	</Appenders>
 	<Loggers>
 		<Root level="DEBUG">
 			<AppenderRef ref="console" />
-			<AppenderRef ref="file" />
+<!-- 			<AppenderRef ref="file" /> -->
 		</Root>
 	</Loggers>
 </Configuration>
