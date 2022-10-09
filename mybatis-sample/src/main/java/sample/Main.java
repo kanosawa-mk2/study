@@ -24,6 +24,7 @@ public class Main {
 			System.out.println(mapper.selectPk(1));
 			System.out.println(mapper.selectPkCount(1));
 			System.out.println(mapper.selectPkBigDecimal(BigDecimal.ONE));
+			System.out.println(mapper.selectWhereDouble(1,"山田 太郎"));
 			
 			Tbl2 tbl = new Tbl2();
 			tbl.setId(99);
@@ -33,14 +34,14 @@ public class Main {
 			tbl.setName("テスト 九九-二");
 			System.out.println(mapper.updatePk(tbl));
 			
-			System.out.println(mapper.deletePk(99));
+//			System.out.println(mapper.deletePk(99));
 			
 			MUserMapper usermapper = session.getMapper(MUserMapper.class);
 			
 			
 			System.out.println(usermapper.selectPk("001"));
 			
-			
+
 			session.commit();
 		}
 

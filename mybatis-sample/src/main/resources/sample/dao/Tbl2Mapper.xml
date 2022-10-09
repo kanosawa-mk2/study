@@ -5,7 +5,8 @@
 <mapper namespace="sample.dao.Tbl2Mapper">
 
 	<select id="selectPk" resultType="sample.model.Tbl2">
-		select * from Tbl2 where id = #{id}
+		select * from Tbl2 where id =
+		#{id}
 	</select>
 
 	<select id="selectPkCount" resultType="int">
@@ -21,6 +22,11 @@
 	<select id="selectPkBigDecimal" resultType="sample.model.Tbl2_2">
 		select * from Tbl2
 		where id = #{id}
+	</select>
+
+	<select id="selectWhereDouble" resultType="sample.model.Tbl2">
+		select * from Tbl2
+		where id = #{id} and name = #{name}
 	</select>
 
 	<insert id="insert">

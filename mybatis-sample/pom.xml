@@ -11,6 +11,22 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<build>
+		<plugins>
+			<!-- コンパイル　オプションに-parametersを追加する -->
+			<!-- このオプションがあるとMybatisのMapperでメソッドの引数が2つ以上ある場合に@Parameアノテーションを記載する必要がなくなる -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerArgs>
+						<arg>-parameters</arg> <!-- ← 追加！！ -->
+					</compilerArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<!-- log -->
 		<dependency>
