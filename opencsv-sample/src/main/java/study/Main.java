@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.text.MessageFormat;
 import java.util.Iterator;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -27,7 +30,6 @@ public class Main {
 			Iterator<Employee> it = csvToBean.iterator();
 			while (it.hasNext()) {
 
-				System.out.println("-----");
 				Employee employee = (Employee) it.next(); // 2行目以降のカスタム検証が実行される
 				System.out.println(employee);
 
@@ -36,10 +38,19 @@ public class Main {
 			boolean csvError = false;
 			Throwable e1 = e.getCause();
 			while (e1 != null) {
-				if (e1 instanceof CsvException) {
-					CsvException csvEx = (CsvException) e1;
+				if (e1 instanceof CustomCsvException) {
+					// カスタム検証エラーの場合
+					CustomCsvException csvEx = (CustomCsvException) e1;
 					System.err
-							.println(MessageFormat.format("エラー発生行 {0}: {1}", csvEx.getLineNumber(), e1.getMessage()));
+							.println(MessageFormat.format("{0}:エラー発生行 {1}", e1.getMessage(), csvEx.getLineNumber()));
+
+					showErrorDetails(csvEx.getConstraintViolations());
+					csvError = true;
+					break;
+				}else if( e1 instanceof CsvException) {
+					// opencsvの検証エラーの場合
+					CsvException csvEx = (CsvException) e1;
+					System.err.println(MessageFormat.format("{0}:エラー発生行 {1}", e1.getMessage(), csvEx.getLineNumber()));
 					csvError = true;
 					break;
 				}
@@ -59,5 +70,18 @@ public class Main {
 //						.println(MessageFormat.format("Line {0}: {1}", ex.getLineNumber(), ex.getMessage(), ex)));
 
 	}
+	
+	private static <T> void showErrorDetails(
+            Set<ConstraintViolation<T>> constraintViolations) {
+        for (ConstraintViolation<T> violation : constraintViolations) {
+            System.out.println("----------");
+            System.out.println("MessageTemplate : " + violation.getMessageTemplate());
+            System.out.println("Message : " + violation.getMessage());
+            System.out.println("InvalidValue : " + violation.getInvalidValue());
+            System.out.println("PropertyPath : " + violation.getPropertyPath());
+            System.out.println("RootBeanClass : " + violation.getRootBeanClass());
+            System.out.println("RootBean : " + violation.getRootBean());
+        }
+    }
 
 }

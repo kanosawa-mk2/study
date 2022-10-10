@@ -1,5 +1,7 @@
 package study;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.opencsv.bean.CsvBindByPosition;
 
 import lombok.Data;
@@ -7,6 +9,7 @@ import lombok.Data;
 @Data
 public class Employee {
 
+	@NotEmpty
 //	@CsvBindByName(column = "First Name", required = true)
 	@CsvBindByPosition(position = 0)
 	private String firstName;
