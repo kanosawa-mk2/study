@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.1">
+    <servlet>
+        <servlet-name>SsoServlet</servlet-name>
+        <servlet-class>test.SsoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SsoServlet</servlet-name>
+        <url-pattern>/sso</url-pattern>
+    </servlet-mapping>
+</web-app>

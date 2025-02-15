@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>test</groupId>
+	<artifactId>saml-auth-sample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<!-- エンコード -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<!-- mvn jetty:runで起動できる -->
+	<!-- mvn package でwarを作成できる -->
+	<build>
+		<plugins>
+			<!-- Jetty プラグインを使用して `mvn jetty:run` で起動 -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.50.v20221201</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
+
+			<!-- Maven コンパイラプラグイン -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<!-- Maven WAR プラグイン（Jetty で動かすために必要） -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.onelogin</groupId>
+			<artifactId>java-saml</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.eclipse.jetty</groupId>-->
+		<!--			<artifactId>jetty-servlet</artifactId>-->
+		<!--			<version>11.0.15</version>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>9.4.50.v20221201</version>
+		</dependency>
+
+		<!--		<dependency>-->
+		<!--			<groupId>jakarta.servlet</groupId>-->
+		<!--			<artifactId>jakarta.servlet-api</artifactId>-->
+		<!--			<version>5.0.0</version>-->
+		<!--			<scope>provided</scope>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
