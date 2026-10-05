@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="sample-report" pageWidth="595" pageHeight="842"
+              columnWidth="515" leftMargin="40" rightMargin="40" topMargin="36" bottomMargin="36"
+              uuid="f674b4e1-eef8-49b9-b356-dc8037119700">
+    <parameter name="ISSUE_DATE" class="java.time.LocalDate"/>
+    <parameter name="CUSTOMER_NAME" class="java.lang.String"/>
+    <parameter name="TOTAL_AMOUNT" class="java.math.BigDecimal"/>
+    <field name="productCode" class="java.lang.String"/>
+    <field name="productName" class="java.lang.String"/>
+    <field name="quantity" class="java.lang.Integer"/>
+    <field name="unitPrice" class="java.math.BigDecimal"/>
+    <field name="amount" class="java.math.BigDecimal"/>
+    <title>
+        <band height="118">
+            <staticText><reportElement x="0" y="0" width="515" height="36"/><textElement textAlignment="Center"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="22" isBold="true"/></textElement><text><![CDATA[売 上 明 細 書]]></text></staticText>
+            <staticText><reportElement x="0" y="54" width="76" height="22"/><textElement><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="11" isBold="true"/></textElement><text><![CDATA[発行日]]></text></staticText>
+            <textField pattern="yyyy年MM月dd日"><reportElement x="76" y="54" width="180" height="22"/><textElement><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="11"/></textElement><textFieldExpression><![CDATA[$P{ISSUE_DATE}]]></textFieldExpression></textField>
+            <staticText><reportElement x="0" y="82" width="76" height="22"/><textElement><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="11" isBold="true"/></textElement><text><![CDATA[お客様名]]></text></staticText>
+            <textField><reportElement x="76" y="82" width="360" height="22"/><textElement><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="12"/></textElement><textFieldExpression><![CDATA[$P{CUSTOMER_NAME} + " 御中"]]></textFieldExpression></textField>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="28">
+            <staticText><reportElement mode="Opaque" backcolor="#D9EAF7" x="0" y="0" width="85" height="28"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="10" isBold="true"/></textElement><text><![CDATA[商品コード]]></text></staticText>
+            <staticText><reportElement mode="Opaque" backcolor="#D9EAF7" x="85" y="0" width="180" height="28"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="10" isBold="true"/></textElement><text><![CDATA[商品名]]></text></staticText>
+            <staticText><reportElement mode="Opaque" backcolor="#D9EAF7" x="265" y="0" width="55" height="28"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="10" isBold="true"/></textElement><text><![CDATA[数量]]></text></staticText>
+            <staticText><reportElement mode="Opaque" backcolor="#D9EAF7" x="320" y="0" width="95" height="28"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="10" isBold="true"/></textElement><text><![CDATA[単価]]></text></staticText>
+            <staticText><reportElement mode="Opaque" backcolor="#D9EAF7" x="415" y="0" width="100" height="28"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="10" isBold="true"/></textElement><text><![CDATA[金額]]></text></staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="26">
+            <textField><reportElement x="0" y="0" width="85" height="26"/><box><pen lineWidth="0.5"/></box><textElement verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="9"/></textElement><textFieldExpression><![CDATA[$F{productCode}]]></textFieldExpression></textField>
+            <textField><reportElement x="85" y="0" width="180" height="26"/><box><pen lineWidth="0.5"/></box><textElement verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="9"/></textElement><textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression></textField>
+            <textField pattern="#,##0"><reportElement x="265" y="0" width="55" height="26"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Right" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="9"/></textElement><textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression></textField>
+            <textField pattern="#,##0.00"><reportElement x="320" y="0" width="95" height="26"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Right" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="9"/></textElement><textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression></textField>
+            <textField pattern="#,##0.00"><reportElement x="415" y="0" width="100" height="26"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Right" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="9"/></textElement><textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression></textField>
+        </band>
+    </detail>
+    <summary>
+        <band height="54">
+            <staticText><reportElement x="320" y="12" width="95" height="28"/><textElement textAlignment="Right" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="11" isBold="true"/></textElement><text><![CDATA[合計金額]]></text></staticText>
+            <textField pattern="#,##0.00"><reportElement x="415" y="12" width="100" height="28"/><box><pen lineWidth="0.75"/></box><textElement textAlignment="Right" verticalAlignment="Middle"><font fontName="SansSerif" pdfFontName="HeiseiKakuGo-W5" pdfEncoding="UniJIS-UCS2-H" isPdfEmbedded="false" size="11" isBold="true"/></textElement><textFieldExpression><![CDATA[$P{TOTAL_AMOUNT}]]></textFieldExpression></textField>
+        </band>
+    </summary>
+</jasperReport>
