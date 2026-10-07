@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <jasperreports.version>6.21.3</jasperreports.version>
+        <exec.mainClass>com.example.jasper.sample.SampleReportApplication</exec.mainClass>
     </properties>
 
     <dependencies>
@@ -38,7 +39,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <mainClass>com.example.jasper.sample.SampleReportApplication</mainClass>
+                    <mainClass>${exec.mainClass}</mainClass>
                 </configuration>
             </plugin>
         </plugins>
